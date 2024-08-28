@@ -1,0 +1,14 @@
+{
+  "id": "ffmpeg",
+  "version": "0.0.2",
+  "name": "ffmpeg",
+  "documentationURL": "https://github.com/devcontainers/features/tree/main/src/node",
+  "description": "Install ffmpeg.",
+  "options": {
+    "libvpx": {
+      "type": "boolean",
+      "default": false,
+      "description": "Install libvpx"
+    }
+  }
+}
