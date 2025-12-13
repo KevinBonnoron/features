@@ -1,7 +1,7 @@
 
 # ffmpeg (ffmpeg)
 
-Install ffmpeg.
+Install ffmpeg from source.
 
 ## Example Usage
 
@@ -15,7 +15,8 @@ Install ffmpeg.
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| libvpx | Install libvpx | boolean | false |
+| version | FFmpeg version to install (e.g., '7.1', '6.1.1', 'latest'). Default is 'latest'. | string | latest |
+| libvpx | Enable libvpx support (VP8/VP9 codec) | boolean | false |
 
 
 
