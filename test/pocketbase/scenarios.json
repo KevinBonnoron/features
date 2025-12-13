@@ -1,0 +1,24 @@
+{
+  "default_version": {
+    "image": "ubuntu:22.04",
+    "features": {
+      "pocketbase": {}
+    }
+  },
+  "specific_version": {
+    "image": "ubuntu:22.04",
+    "features": {
+      "pocketbase": {
+        "version": "0.28.0"
+      }
+    }
+  },
+  "debian_latest": {
+    "image": "debian:12",
+    "features": {
+      "pocketbase": {
+        "version": "0.29.3"
+      }
+    }
+  }
+}
