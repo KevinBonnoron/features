@@ -1,14 +1,19 @@
 {
   "id": "ffmpeg",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "name": "ffmpeg",
   "documentationURL": "https://github.com/KevinBonnoron/features/tree/main/src/ffmpeg",
-  "description": "Install ffmpeg.",
+  "description": "Install ffmpeg from source.",
   "options": {
+    "version": {
+      "type": "string",
+      "default": "latest",
+      "description": "FFmpeg version to install (e.g., '7.1', '6.1.1', 'latest'). Default is 'latest'."
+    },
     "libvpx": {
       "type": "boolean",
       "default": false,
-      "description": "Install libvpx"
+      "description": "Enable libvpx support (VP8/VP9 codec)"
     }
   }
 }

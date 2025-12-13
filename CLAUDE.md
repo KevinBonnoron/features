@@ -1,0 +1,67 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Repository Overview
+
+This repository contains DevContainer Features for use with VS Code Dev Containers and GitHub Codespaces. Each feature is a self-contained, shareable unit of installation code and dev container configuration that can be installed into development containers.
+
+## Repository Structure
+
+```
+src/
+  <feature-name>/
+    devcontainer-feature.json  # Feature metadata and options
+    install.sh                 # Installation script
+    README.md                  # Auto-generated documentation
+```
+
+Each feature lives in its own directory under `src/`. The key files are:
+
+- `devcontainer-feature.json`: Defines the feature metadata (id, version, name, description, documentation URL, and configurable options)
+- `install.sh`: Bash script that installs the feature (runs during container build)
+- `README.md`: Auto-generated from devcontainer-feature.json by the CI/CD workflow
+
+## Development Workflow
+
+### Adding a New Feature
+
+1. Create a new directory under `src/` with the feature name
+2. Create `devcontainer-feature.json` with required metadata:
+   - `id`: Feature identifier (lowercase, hyphenated)
+   - `version`: Semantic version (e.g., "0.0.1")
+   - `name`: Display name
+   - `documentationURL`: GitHub URL to the feature directory
+   - `description`: Brief description of what the feature installs
+   - `options`: Object defining configurable options (can be empty `{}`)
+3. Create `install.sh` script that:
+   - Uses `apt-get` for package installation
+   - Accesses options via shell variables (e.g., `${optionName}`)
+   - Includes `--no-install-recommends` flag for minimal installations
+   - Runs `apt-get update` before installing packages
+
+### Option Variables
+
+Options defined in `devcontainer-feature.json` are available in `install.sh` as shell variables. For example, an option `libvpx` becomes available as `${libvpx}`.
+
+### CI/CD
+
+The repository uses GitHub Actions (`.github/workflows/release.yml`) to:
+
+1. Automatically publish features to GitHub Container Registry on push to main
+2. Generate README.md files from devcontainer-feature.json
+3. Create pull requests with documentation updates
+
+The workflow uses `devcontainers/action@v1` with:
+- `publish-features: "true"`
+- `base-path-to-features: "./src"`
+- `generate-docs: "true"`
+
+### Version Bumping
+
+When making changes to a feature, increment the `version` field in `devcontainer-feature.json` following semantic versioning.
+
+## Current Features
+
+- **ffmpeg**: Installs ffmpeg with optional libvpx support
+- **git-absorb**: Installs git-absorb tool for automatic commit fixup
