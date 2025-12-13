@@ -31,6 +31,21 @@ Installs [git-absorb](https://github.com/tummychow/git-absorb), a tool for autom
 }
 ```
 
+### pocketbase
+
+Installs [PocketBase](https://pocketbase.io/), an open-source backend in 1 file.
+
+```json
+"features": {
+    "ghcr.io/KevinBonnoron/features/pocketbase:0": {
+        "version": "0.29.3"
+    }
+}
+```
+
+Options:
+- `version`: PocketBase version to install (e.g., "0.29.3", "0.28.0"). Default: "0.29.3"
+
 ## Usage
 
 To use these features, add them to your `.devcontainer/devcontainer.json` file:

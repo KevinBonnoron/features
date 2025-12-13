@@ -1,0 +1,14 @@
+{
+  "id": "pocketbase",
+  "version": "0.0.1",
+  "name": "PocketBase",
+  "documentationURL": "https://github.com/KevinBonnoron/features/tree/main/src/pocketbase",
+  "description": "Install PocketBase - an open-source backend in 1 file.",
+  "options": {
+    "version": {
+      "type": "string",
+      "default": "0.29.3",
+      "description": "PocketBase version to install (e.g., '0.29.3', '0.28.0')"
+    }
+  }
+}

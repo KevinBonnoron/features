@@ -112,5 +112,6 @@ When making changes to a feature, increment the `version` field in `devcontainer
 
 ## Current Features
 
-- **ffmpeg**: Installs ffmpeg with optional libvpx support
+- **ffmpeg**: Compiles and installs ffmpeg from source with configurable codecs
 - **git-absorb**: Installs git-absorb tool for automatic commit fixup
+- **pocketbase**: Installs PocketBase backend from official GitHub releases
