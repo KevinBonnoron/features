@@ -1,0 +1,32 @@
+{
+  "with_libvpx": {
+    "image": "ubuntu:22.04",
+    "features": {
+      "ffmpeg": {
+        "version": "latest",
+        "libvpx": true
+      }
+    },
+    "remoteEnv": {
+      "LIBVPX": "true"
+    }
+  },
+  "specific_version": {
+    "image": "ubuntu:22.04",
+    "features": {
+      "ffmpeg": {
+        "version": "7.0",
+        "libvpx": false
+      }
+    }
+  },
+  "debian_latest": {
+    "image": "debian:12",
+    "features": {
+      "ffmpeg": {
+        "version": "latest",
+        "libvpx": false
+      }
+    }
+  }
+}

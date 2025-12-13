@@ -14,13 +14,22 @@ src/
     devcontainer-feature.json  # Feature metadata and options
     install.sh                 # Installation script
     README.md                  # Auto-generated documentation
+test/
+  <feature-name>/
+    test.sh                    # Test script executed inside container
+    scenarios.json             # (Optional) Multiple test scenarios
 ```
 
-Each feature lives in its own directory under `src/`. The key files are:
+Each feature lives in its own directory under `src/` with a corresponding test directory:
 
+**Source files:**
 - `devcontainer-feature.json`: Defines the feature metadata (id, version, name, description, documentation URL, and configurable options)
 - `install.sh`: Bash script that installs the feature (runs during container build)
 - `README.md`: Auto-generated from devcontainer-feature.json by the CI/CD workflow
+
+**Test files:**
+- `test.sh`: Validation script using `check` commands from `dev-container-features-test-lib`
+- `scenarios.json`: Defines multiple test scenarios with different options and base images
 
 ## Development Workflow
 
@@ -56,6 +65,46 @@ The workflow uses `devcontainers/action@v1` with:
 - `publish-features: "true"`
 - `base-path-to-features: "./src"`
 - `generate-docs: "true"`
+
+### Testing Features
+
+Each feature should have a corresponding test directory with at minimum a `test.sh` file:
+
+```bash
+#!/bin/bash
+set -e
+
+source dev-container-features-test-lib
+
+check "tool is installed" tool --version
+check "tool command exists" which tool
+
+reportResults
+```
+
+For complex features, add `scenarios.json` to test different configurations:
+
+```json
+{
+  "scenario_name": {
+    "image": "ubuntu:22.04",
+    "features": {
+      "feature-name": {
+        "option1": true
+      }
+    },
+    "remoteEnv": {
+      "ENV_VAR": "value"
+    }
+  }
+}
+```
+
+Tests run automatically in CI before publishing. To run tests locally:
+
+```bash
+devcontainer features test --features ffmpeg --base-image ubuntu:22.04
+```
 
 ### Version Bumping
 
