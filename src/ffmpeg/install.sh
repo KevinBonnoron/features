@@ -3,36 +3,32 @@ set -e
 
 VERSION="${version:-latest}"
 INSTALL_LIBVPX="${libvpx:-false}"
+INSTALL_OPENSSL="${openssl:-true}"
 
 echo "Installing FFmpeg ${VERSION} from source..."
 
 # Install build dependencies
-apt-get update
-apt-get -y install --no-install-recommends \
-    build-essential \
-    pkg-config \
-    yasm \
-    nasm \
-    git \
-    wget \
-    ca-certificates \
-    libx264-dev \
-    libx265-dev \
-    libnuma-dev \
-    libmp3lame-dev \
-    libopus-dev
+DEPS="build-essential pkg-config yasm nasm git wget ca-certificates libx264-dev libx265-dev libnuma-dev libmp3lame-dev libopus-dev"
 
-# Install libvpx if requested
-if [ "${INSTALL_LIBVPX}" = "true" ]; then
-    apt-get -y install --no-install-recommends libvpx-dev
+# Add OpenSSL if requested
+if [ "${INSTALL_OPENSSL}" = "true" ]; then
+    DEPS="${DEPS} libssl-dev"
 fi
+
+# Add libvpx if requested
+if [ "${INSTALL_LIBVPX}" = "true" ]; then
+    DEPS="${DEPS} libvpx-dev"
+fi
+
+apt-get update
+apt-get -y install --no-install-recommends ${DEPS}
 
 # Determine version to install
 if [ "${VERSION}" = "latest" ]; then
     # Get latest release tag from FFmpeg git
     FFMPEG_VERSION=$(git ls-remote --tags https://git.ffmpeg.org/ffmpeg.git | \
         grep -v '\^{}' | \
-        grep -o 'refs/tags/n[0-9.]*$' | \
+        grep -o 'refs/tags/n[0-9.]*' | \
         sed 's/refs\/tags\/n//' | \
         sort -V | \
         tail -n 1)
@@ -49,6 +45,10 @@ cd "ffmpeg-${FFMPEG_VERSION}"
 
 # Configure options
 CONFIGURE_FLAGS="--enable-gpl --enable-nonfree --enable-libx264 --enable-libx265 --enable-libmp3lame --enable-libopus"
+
+if [ "${INSTALL_OPENSSL}" = "true" ]; then
+    CONFIGURE_FLAGS="${CONFIGURE_FLAGS} --enable-openssl"
+fi
 
 if [ "${INSTALL_LIBVPX}" = "true" ]; then
     CONFIGURE_FLAGS="${CONFIGURE_FLAGS} --enable-libvpx"

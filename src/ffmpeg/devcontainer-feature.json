@@ -10,6 +10,11 @@
       "default": "latest",
       "description": "FFmpeg version to install (e.g., '7.1', '6.1.1', 'latest'). Default is 'latest'."
     },
+    "openssl": {
+      "type": "boolean",
+      "default": true,
+      "description": "Enable OpenSSL support for HTTPS protocols"
+    },
     "libvpx": {
       "type": "boolean",
       "default": false,
