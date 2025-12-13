@@ -1,6 +1,6 @@
 {
   "id": "ffmpeg",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "name": "ffmpeg",
   "documentationURL": "https://github.com/KevinBonnoron/features/tree/main/src/ffmpeg",
   "description": "Install ffmpeg from source.",

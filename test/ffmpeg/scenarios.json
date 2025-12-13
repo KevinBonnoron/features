@@ -1,4 +1,12 @@
 {
+  "specific_version": {
+    "image": "ubuntu:22.04",
+    "features": {
+      "ffmpeg": {
+        "version": "7.0"
+      }
+    }
+  },
   "with_libvpx": {
     "image": "ubuntu:22.04",
     "features": {
@@ -11,12 +19,12 @@
       "LIBVPX": "true"
     }
   },
-  "specific_version": {
+  "with_openssl": {
     "image": "ubuntu:22.04",
     "features": {
       "ffmpeg": {
-        "version": "7.0",
-        "libvpx": false
+        "version": "latest",
+        "openssl": true
       }
     }
   },
