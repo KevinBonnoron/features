@@ -15,7 +15,7 @@ Install ffmpeg from source.
 
 | Options Id | Description | Type | Default Value |
 |-----|-----|-----|-----|
-| version | FFmpeg version to install (e.g., '7.1', '6.1.1', 'latest'). Default is 'latest'. | string | latest |
+| version | FFmpeg version to install (e.g., '7.1', '6.1.1', 'latest', 'system', 'apt'). Default is 'latest'. | string | latest |
 | openssl | Enable OpenSSL support for HTTPS protocols | boolean | true |
 | libvpx | Enable libvpx support (VP8/VP9 codec) | boolean | false |
 
