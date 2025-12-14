@@ -1,6 +1,6 @@
 {
   "id": "ffmpeg",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "name": "ffmpeg",
   "documentationURL": "https://github.com/KevinBonnoron/features/tree/main/src/ffmpeg",
   "description": "Install ffmpeg from source.",
@@ -8,7 +8,7 @@
     "version": {
       "type": "string",
       "default": "latest",
-      "description": "FFmpeg version to install (e.g., '7.1', '6.1.1', 'latest'). Default is 'latest'."
+      "description": "FFmpeg version to install (e.g., '7.1', '6.1.1', 'latest', 'system', 'apt'). Default is 'latest'."
     },
     "openssl": {
       "type": "boolean",
